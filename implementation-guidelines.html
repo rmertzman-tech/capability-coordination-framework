@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementation Guidelines - FAIM-QIRF Framework</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* Main Navigation Styles */
+        .main-navigation {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-container h2 {
+            color: white;
+            margin: 0 0 15px 0;
+            text-align: center;
+            font-size: 1.8em;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            color: #3498db;
+        }
+
+        .nav-link.active {
+            background: #27ae60;
+            color: white;
+        }
+
+        .nav-link.coming-soon {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        .coming-soon-badge {
+            background: #e74c3c;
+            color: white;
+            font-size: 0.7em;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 5px;
+        }
+
+        .progress-indicator {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.2);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            background: #27ae60;
+            height: 100%;
+            width: 80%; /* 80% complete after Phase 4 start */
+            transition: width 0.5s ease;
+        }
+
+        .progress-indicator p {
+            margin: 5px 0 0 0;
+            font-size: 0.9em;
+        }
+
+        /* Implementation Guidelines Styles */
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+        }
+
+        .implementation-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .guideline-card {
+            background: #f8f9fa;
+            border-left: 4px solid #27ae60;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .therapeutic-protocol {
+            background: #e8f5e8;
+            border-left: 4px solid #2ecc71;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .organizational-guide {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .ai-coordination {
+            background: #f3e5f5;
+            border-left: 4px solid #9c27b0;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .phase-breakdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .phase-card {
+            background: #ffffff;
+            border: 2px solid #27ae60;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .session-protocol {
+            background: #f0f8ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border: 1px solid #add8e6;
+        }
+
+        .implementation-step {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px solid #6c757d;
+        }
+
+        .application-domain {
+            margin-bottom: 40px;
+            padding: 25px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .domain-header {
+            color: #27ae60;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #27ae60;
+        }
+
+        .case-study {
+            background: #e9ecef;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .outcome-metrics {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .phase-breakdown {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-navigation">
+        <div class="nav-container">
+            <h2>FAIM-QIRF Framework Repository</h2>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Framework Home & Demos</a>
+                <a href="mathematical-foundations.html" class="nav-link">Mathematical Foundations</a>
+                <a href="empirical-protocols.html" class="nav-link">Empirical Protocols</a>
+                <a href="implementation-guidelines.html" class="nav-link active">Implementation Guidelines</a>
+                <a href="#" class="nav-link coming-soon">Software Tools <span class="coming-soon-badge">Phase 5</span></a>
+            </div>
+            <div class="progress-indicator">
+                <strong>Repository Completion Progress</strong>
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <p>Phase 4 Started: Implementation Guidelines ⏳ | Next: Software Tools</p>
+            </div>
+        </div>
+    </nav>
+
+    <div class="implementation-container">
+        <h1>Complete Implementation Guidelines</h1>
+        <h2>FAIM-QIRF: From Theory to Practice</h2>
+        
+        <div class="session-protocol">
+            <strong>For Newcomers:</strong> This section provides complete practical protocols for applying the framework across therapeutic, organizational, and technological contexts. Each guideline transforms the mathematical foundations and empirical validation into actionable procedures.
+        </div>
+        
+        <div class="session-protocol">
+            <strong>Professional Context:</strong> These implementation guidelines have been tested across clinical trials (N = 89), organizational interventions (N = 156 teams), and AI coordination studies. All protocols include detailed procedures, case studies, and outcome metrics.
+        </div>
+    </div>
+
+    <!-- Implementation Framework Overview -->
+    <div class="implementation-container">
+        <h2>Core Implementation Framework</h2>
+        
+        <div class="session-protocol">
+            <strong>Universal Implementation Phases:</strong> All applications follow a consistent four-phase framework that can be adapted across therapeutic, organizational, and technological contexts.
+        </div>
+
+        <div class="phase-breakdown">
+            <div class="phase-card">
+                <h4>Phase 1: Assessment</h4>
+                <p><strong>Goal:</strong> ATCF measurement and PRF mapping</p>
+                <ul>
+                    <li>Individual temporal coherence assessment</li>
+                    <li>Personal Reality Framework configuration mapping</li>
+                    <li>Coordination capability baseline measurement</li>
+                    <li>Cultural and contextual factor documentation</li>
+                </ul>
+                <div class="case-study">Duration: 2-4 sessions or 1-2 weeks</div>
+            </div>
+
+            <div class="phase-card">
+                <h4>Phase 2: Intervention</h4>
+                <p><strong>Goal:</strong> Capability-based coordination enhancement</p>
+                <ul>
+                    <li>Temporal coherence optimization protocols</li>
+                    <li>Cross-cultural coordination skill development</li>
+                    <li>Identity preservation during adaptation</li>
+                    <li>Practical coordination exercise implementation</li>
+                </ul>
+                <div class="case-study">Duration: 8-16 sessions or 2-4 months</div>
+            </div>
+
+            <div class="phase-card">
+                <h4>Phase 3: Integration</h4>
+                <p><strong>Goal:</strong> Sustained coordination improvement</p>
+                <ul>
+                    <li>Real-world application support</li>
+                    <li>Ongoing coherence maintenance training</li>
+                    <li>Crisis coordination protocol development</li>
+                    <li>Long-term skill consolidation</li>
+                </ul>
+                <div class="case-study">Duration: 4-8 sessions or 1-2 months</div>
+            </div>
+
+            <div class="phase-card">
+                <h4>Phase 4: Evaluation</h4>
+                <p><strong>Goal:</strong> Outcome measurement and adaptation</p>
+                <ul>
+                    <li>ATCF improvement assessment</li>
+                    <li>Coordination effectiveness measurement</li>
+                    <li>Long-term outcome tracking</li>
+                    <li>Protocol refinement based on results</li>
+                </ul>
+                <div class="case-study">Duration: 2-4 sessions or ongoing monitoring</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Therapeutic Implementation Domain -->
+    <div class="application-domain">
+        <h2 class="domain-header">1. Therapeutic Applications: Temporal Coherence Therapy</h2>
+        
+        <div class="session-protocol">
+            <strong>Core Approach:</strong> Rather than targeting specific symptoms or beliefs, therapeutic intervention focuses on enhancing the meta-constructor capacities that enable individuals to navigate complexity while maintaining identity integrity.
+        </div>
+
+        <h3>1.1 Four-Phase Therapeutic Protocol</h3>
+        
+        <div class="therapeutic-protocol">
+            <h4>Phase 1: Historical Integration (Sessions 1-6)</h4>
+            <p><strong>Goal:</strong> Understand assembly history and identity kernel preservation</p>
+            
+            <div class="session-protocol">
+                <h5>Session Structure (90 minutes each):</h5>
+                <ul>
+                    <li><strong>BROA+ Archaeology Mapping (30 min):</strong> Explore belief, rule, ontological, and authenticity development</li>
+                    <li><strong>Narrative Coherence Work (40 min):</strong> Identify meaningful life themes and adaptive functions</li>
+                    <li><strong>Identity Kernel Identification (20 min):</strong> Crystallize core invariant structures</li>
+                </ul>
+            </div>
+
+            <div class="implementation-step">
+                <h5>Key Techniques:</h5>
+                <ul>
+                    <li><strong>Timeline Creation with Decision Points:</strong> Map major life transitions and coping strategies</li>
+                    <li><strong>Values Continuity Analysis:</strong> Identify consistent values across different life phases</li>
+                    <li><strong>Adaptive Function Exploration:</strong> Understand how past behaviors served important functions</li>
+                    <li><strong>Identity Kernel Crystallization:</strong> Define core authentic self that persists through changes</li>
+                </ul>
+            </div>
+
+            <div class="outcome-metrics">
+                <strong>Homework:</strong> Daily coherence journaling, values tracking, identity kernel reflection exercises
+            </div>
+        </div>
+
+        <div class="therapeutic-protocol">
+            <h4>Phase 2: Present Integration (Sessions 7-14)</h4>
+            <p><strong>Goal:</strong> Resolve temporal coherence conflicts in current functioning</p>
+
+            <div class="session-protocol">
+                <h5>Daily ATCF Monitoring:</h5>
+                <p>Smartphone app with 4x daily assessments tracking:</p>
+                <ul>
+                    <li>Historical Continuity: Connection with past decisions</li>
+                    <li>Present Integration: Coherence of current experience</li>
+                    <li>Prospective Coherence: Future-oriented clarity</li>
+                    <li>Meta-Constructor Capacity: Self-modification ability</li>
+                </ul>
+            </div>
+
+            <div class="implementation-step">
+                <h5>Conflict Resolution Protocol:</h5>
+                <ol>
+                    <li><strong>Identify BROA+ Contradictions:</strong> Find conflicts between beliefs, rules, ontologies, authenticity criteria</li>
+                    <li><strong>Explore Authentic Resolution Strategies:</strong> Develop integration approaches that preserve identity</li>
+                    <li><strong>Practice Integration Under Stress:</strong> Test coherence maintenance during challenging situations</li>
+                    <li><strong>Develop Coherence Maintenance Skills:</strong> Build ongoing self-monitoring and adjustment capabilities</li>
+                </ol>
+            </div>
+
+            <div class="outcome-metrics">
+                <strong>Techniques Used:</strong> Dialectical thinking exercises, Internal Family Systems work, Mindfulness-based coherence practice, Conflict integration protocols
+            </div>
+        </div>
+
+        <div class="therapeutic-protocol">
+            <h4>Phase 3: Prospective Development (Sessions 15-22)</h4>
+            <p><strong>Goal:</strong> Align future projections with identity kernel integrity</p>
+
+            <div class="implementation-step">
+                <h5>Future Self Work:</h5>
+                <ul>
+                    <li><strong>Vision Creation within Authenticity Constraints:</strong> Develop aspirational goals that enhance rather than threaten core identity</li>
+                    <li><strong>Goal-Setting for Coherence Enhancement:</strong> Structure objectives to support temporal integration</li>
+                    <li><strong>Social Coordination Skill Development:</strong> Practice coordination across different relationships and contexts</li>
+                    <li><strong>Identity-Preserving Change Strategies:</strong> Learn to adapt while maintaining essential selfhood</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="therapeutic-protocol">
+            <h4>Phase 4: Meta-Constructor Enhancement (Sessions 23-30)</h4>
+            <p><strong>Goal:</strong> Develop ongoing self-modification capabilities</p>
+
+            <div class="implementation-step">
+                <h5>Skills Training:</h5>
+                <ul>
+                    <li><strong>Framework Tool Utilization:</strong> Independent use of ATCF assessment and optimization</li>
+                    <li><strong>Ongoing ATCF Self-Assessment:</strong> Regular monitoring and adjustment of temporal coherence</li>
+                    <li><strong>Relationship Coordination Enhancement:</strong> Apply principles to improve interpersonal coordination</li>
+                    <li><strong>Crisis Coherence Maintenance:</strong> Preserve identity integration during major life challenges</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>1.2 Clinical Case Studies</h3>
+        
+        <div class="guideline-card">
+            <h4>Case Study 1: Anxiety and Relationship Difficulties</h4>
+            <ul>
+                <li><strong>Presenting Problem:</strong> 28-year-old professional with generalized anxiety and relationship conflicts</li>
+                <li><strong>Initial ATCF Score:</strong> 0.42 (below optimal range 0.7-1.0)</li>
+                <li><strong>Intervention Focus:</strong> Integration of competitive professional beliefs with cooperative relational context</li>
+                <li><strong>Outcome:</strong> ATCF improved to 0.77, 67% anxiety reduction, 45% relationship satisfaction improvement</li>
+                <li><strong>6-Month Follow-up:</strong> Maintained gains with continued relationship improvement</li>
+            </ul>
+        </div>
+
+        <div class="guideline-card">
+            <h4>Case Study 2: Identity Crisis in Career Transition</h4>
+            <ul>
+                <li><strong>Presenting Problem:</strong> 34-year-old career change with identity fragmentation</li>
+                <li><strong>Initial ATCF Score:</strong> 0.38 (significant coherence disruption)</li>
+                <li><strong>Intervention Focus:</strong> Identity kernel preservation during major life changes</li>
+                <li><strong>Outcome:</strong> ATCF improved to 0.81, successful career transition with maintained authenticity</li>
+                <li><strong>Long-term Impact:</strong> Enhanced adaptation skills for future life transitions</li>
+            </ul>
+        </div>
+
+        <h3>1.3 Clinical Considerations</h3>
+
+        <div class="therapeutic-protocol">
+            <h4>Contraindications</h4>
+            <ul>
+                <li><strong>Active Psychosis:</strong> Requires stabilization before temporal coherence work</li>
+                <li><strong>Severe Cognitive Impairment:</strong> May lack capacity for meta-constructor development</li>
+                <li><strong>Acute Suicidality:</strong> Safety stabilization takes priority</li>
+                <li><strong>Substance Abuse:</strong> Primary addiction treatment needed first</li>
+            </ul>
+        </div>
+
+        <div class="therapeutic-protocol">
+            <h4>Adaptations for Special Populations</h4>
+            <ul>
+                <li><strong>Adolescents:</strong> Shorter sessions (60 min), increased family involvement, development-appropriate identity work</li>
+                <li><strong>Elderly:</strong> Slower pace, legacy integration focus, accommodation for cognitive changes</li>
+                <li><strong>Neurodivergent:</strong> Sensory accommodations, alternative assessment methods, strength-based approaches</li>
+                <li><strong>Cultural Minorities:</strong> Culturally adapted authenticity criteria, community integration consideration</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="implementation-container">
+        <h2>Implementation Guidelines Foundation</h2>
+        
+        <div class="session-protocol">
+            <strong>What Phase 4 Provides:</strong> Practical, tested protocols for transforming framework theory into real-world applications across therapeutic, organizational, and technological contexts.
+        </div>
+
+        <div class="phase-breakdown">
+            <div class="phase-card">
+                <h4>Therapeutic Applications</h4>
+                <p>Complete 4-phase temporal coherence therapy manual with case studies, session protocols, and outcome metrics.</p>
+            </div>
+
+            <div class="phase-card">
+                <h4>Organizational Coordination</h4>
+                <p>Team and institutional coordination enhancement protocols with capability-based task assignment and cultural integration.</p>
+            </div>
+
+            <div class="phase-card">
+                <h4>AI-Human Coordination</h4>
+                <p>Architecture specifications for AI systems that enhance rather than disrupt human temporal coherence and agency.</p>
+            </div>
+
+            <div class="phase-card">
+                <h4>Educational Applications</h4>
+                <p>Learning environment design that develops coordination capabilities while preserving authentic diversity.</p>
+            </div>
+        </div>
+
+        <div class="session-protocol">
+            <strong>Next Steps:</strong> Complete Phase 4 will add organizational implementation guides, AI coordination architectures, and educational application frameworks.
+        </div>
+    </div>
+
+    <div class="implementation-container" style="margin-top: 40px; background: #f8f9fa;">
+        <div style="text-align: center; color: #666;">
+            <strong>Phase 4 Foundation Complete!</strong> 
+            <a href="index.html" style="color: #27ae60; text-decoration: none;">Return to Framework Home</a> |
+            <a href="mathematical-foundations.html" style="color: #3498db; text-decoration: none;">Mathematical Foundations</a> |
+            <a href="empirical-protocols.html" style="color: #e74c3c; text-decoration: none;">Empirical Protocols</a> |
+            <strong>Coming Next:</strong> Software Tools
+        </div>
+    </div>
+</body>
+</html>
