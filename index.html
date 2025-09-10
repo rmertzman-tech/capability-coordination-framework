@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capability-Based Coordination Framework - Technical Repository</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
     <style>
         /* Main Navigation Styles */
         .main-navigation {
@@ -57,48 +56,7 @@
             color: white;
         }
 
-        .nav-link.coming-soon {
-            opacity: 0.6;
-            cursor: default;
-        }
-
-        .coming-soon-badge {
-            background: #e74c3c;
-            color: white;
-            font-size: 0.7em;
-            padding: 2px 6px;
-            border-radius: 10px;
-            margin-left: 5px;
-        }
-
-        .progress-indicator {
-            background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 6px;
-            text-align: center;
-        }
-
-        .progress-bar {
-            background: rgba(255,255,255,0.2);
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-
-        .progress-fill {
-            background: #27ae60;
-            height: 100%;
-            width: 40%; /* 40% complete after Phase 2 */
-            transition: width 0.5s ease;
-        }
-
-        .progress-indicator p {
-            margin: 5px 0 0 0;
-            font-size: 0.9em;
-        }
-
-        /* Original Framework Styles */
+        /* Framework Styles */
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             margin: 0;
@@ -205,6 +163,11 @@
         .btn-secondary {
             background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
             color: #333;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9em;
         }
 
         .modal {
@@ -407,11 +370,6 @@
             margin-top: 15px;
         }
 
-        .btn-small {
-            padding: 8px 16px;
-            font-size: 0.9em;
-        }
-
         @media (max-width: 768px) {
             .nav-links {
                 flex-direction: column;
@@ -443,19 +401,18 @@
     </style>
 </head>
 <body>
-    <!-- New Navigation Section -->
     <nav class="main-navigation">
-    <div class="nav-container">
-        <h2>FAIM-QIRF Framework Repository</h2>
-        <div class="nav-links">
-            <a href="index.html" class="nav-link active">Framework Home & Demos</a>
-            <a href="mathematical-foundations.html" class="nav-link">Mathematical Foundations</a>
-            <a href="empirical-protocols.html" class="nav-link">Empirical Protocols</a>
-            <a href="implementation-guidelines.html" class="nav-link">Implementation Guidelines</a>
-            <a href="software-tools.html" class="nav-link">Software Tools</a>
+        <div class="nav-container">
+            <h2>FAIM-QIRF Framework Repository</h2>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active">Framework Home & Demos</a>
+                <a href="mathematical-foundations.html" class="nav-link">Mathematical Foundations</a>
+                <a href="empirical-protocols.html" class="nav-link">Empirical Protocols</a>
+                <a href="implementation-guidelines.html" class="nav-link">Implementation Guidelines</a>
+                <a href="software-tools.html" class="nav-link">Software Tools</a>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <div class="container">
         <div class="header">
@@ -655,180 +612,533 @@
     </div>
 
     <script>
-// Enhanced Agent Data with 6 Diverse Examples
-const sampleAgentData = {
-    tanaka: {
-        id: 'tanaka_001',
-        name: 'Dr. Kenji Tanaka',
-        subtitle: 'Japanese Collectivist Physician',
-        cultural_background: 'Japanese collectivistic',
-        profession: 'Medical Doctor',
-        age_group: 'mid-career',
-        neurodiversity: 'neurotypical',
-        broa_data: {
-            beliefs: {
-                healthcare_collective_responsibility: 0.95,
-                individual_sacrifice_for_group: 0.90,
-                evidence_based_medicine: 0.88,
-                family_involvement_decisions: 0.85,
-                prevention_over_treatment: 0.82
+        console.log('Loading FAIM-QIRF Framework Application...');
+
+        // Agent data structure
+        const sampleAgentData = {
+            tanaka: {
+                id: 'tanaka_001',
+                name: 'Dr. Kenji Tanaka',
+                subtitle: 'Japanese Collectivist Physician',
+                cultural_background: 'Japanese collectivistic',
+                profession: 'Medical Doctor',
+                age_group: 'mid-career',
+                neurodiversity: 'neurotypical',
+                atcf_components: {
+                    historical_continuity: 0.89,
+                    present_integration: 0.86,
+                    prospective_coherence: 0.84,
+                    meta_constructor_capacity: 0.81
+                },
+                coordination_capabilities: {
+                    communication_style: 'consensus_building',
+                    conflict_management: 'harmony_preservation',
+                    trust_building: 'relationship_cultivation',
+                    adaptation_style: 'collective_wisdom'
+                },
+                identity_kernel: 'Traditional Japanese medical values, collectivist orientation, harmony-seeking'
             },
-            rules: {
-                consensus_building: 0.92,
-                defer_to_seniors: 0.88,
-                include_family: 0.85,
-                avoid_confrontation: 0.80,
-                prioritize_group_outcomes: 0.78
+            maya: {
+                id: 'maya_002',
+                name: 'Maya Patel',
+                subtitle: 'ADHD Software Engineer',
+                cultural_background: 'Western individualistic',
+                profession: 'Software Engineer',
+                age_group: 'young_adult',
+                neurodiversity: 'ADHD',
+                atcf_components: {
+                    historical_continuity: 0.74,
+                    present_integration: 0.78,
+                    prospective_coherence: 0.71,
+                    meta_constructor_capacity: 0.89
+                },
+                coordination_capabilities: {
+                    communication_style: 'structured_flexibility',
+                    conflict_management: 'creative_problem_solving',
+                    trust_building: 'competence_demonstration',
+                    adaptation_style: 'innovative_approaches'
+                },
+                identity_kernel: 'Neurodivergent innovation, creative flexibility, adaptive structures'
             },
-            ontological_commitments: {
-                interconnected_responsibility: 0.93,
-                hierarchical_respect: 0.89,
-                collective_identity_primacy: 0.87,
-                relational_causation: 0.84,
-                shared_burden_concepts: 0.81
+            fischer: {
+                id: 'fischer_003',
+                name: 'Dr. Emma Fischer',
+                subtitle: 'German Systematic Researcher',
+                cultural_background: 'German individualistic',
+                profession: 'Research Scientist',
+                age_group: 'mid_career',
+                neurodiversity: 'neurotypical',
+                atcf_components: {
+                    historical_continuity: 0.91,
+                    present_integration: 0.94,
+                    prospective_coherence: 0.88,
+                    meta_constructor_capacity: 0.79
+                },
+                coordination_capabilities: {
+                    communication_style: 'systematic_protocols',
+                    conflict_management: 'methodical_resolution',
+                    trust_building: 'reliability_demonstration',
+                    adaptation_style: 'evidence_based_updating'
+                },
+                identity_kernel: 'Germanic systematic thinking, methodological precision, efficiency-oriented'
             },
-            authenticity_criteria: {
-                cultural_harmony_preservation: 0.94,
-                professional_duty_alignment: 0.91,
-                community_service_orientation: 0.88,
-                traditional_wisdom_respect: 0.85,
-                collective_decision_validation: 0.83
+            clara: {
+                id: 'clara_004',
+                name: 'Grandmother Clara Whitehorse',
+                subtitle: 'Indigenous Community Elder',
+                cultural_background: 'Indigenous community-oriented',
+                profession: 'Community Elder/Wisdom Keeper',
+                age_group: 'elder',
+                neurodiversity: 'neurotypical',
+                atcf_components: {
+                    historical_continuity: 0.94,
+                    present_integration: 0.88,
+                    prospective_coherence: 0.91,
+                    meta_constructor_capacity: 0.86
+                },
+                coordination_capabilities: {
+                    communication_style: 'consensus_circles',
+                    conflict_management: 'restorative_processes',
+                    trust_building: 'relationship_cultivation',
+                    adaptation_style: 'traditional_wisdom_integration'
+                },
+                identity_kernel: 'Indigenous worldview, seven-generation thinking, relational ontology'
+            },
+            alex: {
+                id: 'alex_005',
+                name: 'Alex Chen',
+                subtitle: 'Non-Binary Artist & College Student',
+                cultural_background: 'Progressive Western',
+                profession: 'Artist/Student',
+                age_group: 'young_adult',
+                neurodiversity: 'neurotypical',
+                atcf_components: {
+                    historical_continuity: 0.73,
+                    present_integration: 0.82,
+                    prospective_coherence: 0.79,
+                    meta_constructor_capacity: 0.91
+                },
+                coordination_capabilities: {
+                    communication_style: 'inclusive_dialogue',
+                    conflict_management: 'identity_affirming_processes',
+                    trust_building: 'authentic_vulnerability',
+                    adaptation_style: 'creative_exploration'
+                },
+                identity_kernel: 'Non-binary identity, artistic expression, social justice orientation'
+            },
+            roberto: {
+                id: 'roberto_006',
+                name: 'Roberto Silva',
+                subtitle: 'Mid-Career Engineering Manager',
+                cultural_background: 'Latino individualistic',
+                profession: 'Engineering Manager',
+                age_group: 'mid_career',
+                neurodiversity: 'neurotypical',
+                atcf_components: {
+                    historical_continuity: 0.85,
+                    present_integration: 0.87,
+                    prospective_coherence: 0.83,
+                    meta_constructor_capacity: 0.80
+                },
+                coordination_capabilities: {
+                    communication_style: 'balanced_negotiation',
+                    conflict_management: 'pragmatic_resolution',
+                    trust_building: 'consistent_reliability',
+                    adaptation_style: 'practical_wisdom'
+                },
+                identity_kernel: 'Mid-career balance, mentorship orientation, practical wisdom'
             }
-        },
-        atcf_components: {
-            historical_continuity: 0.89,
-            present_integration: 0.86,
-            prospective_coherence: 0.84,
-            meta_constructor_capacity: 0.81
-        },
-        coordination_capabilities: {
-            communication_style: 'consensus_building',
-            conflict_management: 'harmony_preservation',
-            trust_building: 'relationship_cultivation',
-            adaptation_style: 'collective_wisdom'
-        },
-        identity_kernel: 'Traditional Japanese medical values, collectivist orientation, harmony-seeking'
-    },
-    maya: {
-        id: 'maya_002',
-        name: 'Maya Patel',
-        subtitle: 'ADHD Software Engineer',
-        cultural_background: 'Western individualistic',
-        profession: 'Software Engineer',
-        age_group: 'young_adult',
-        neurodiversity: 'ADHD',
-        broa_data: {
-            beliefs: {
-                creative_solutions_diverse_thinking: 0.92,
-                multiple_projects_enhance_innovation: 0.89,
-                deadlines_flexible_guidelines: 0.75,
-                neurotypical_not_universal: 0.88,
-                hyperfocus_exceptional_work: 0.91
+        };
+
+        const culturalFrameworks = {
+            individualistic: {
+                name: "Individualistic Framework",
+                description: "Emphasizes personal autonomy, individual rights, and self-directed decision-making.",
+                coordination_principles: [
+                    "Respect for individual autonomy and choice",
+                    "Clear individual accountability and responsibility",
+                    "Direct communication and explicit agreements",
+                    "Merit-based recognition and advancement",
+                    "Minimal interference with personal decisions"
+                ],
+                atcf_adaptations: {
+                    historical_continuity: "Personal narrative and individual growth trajectory",
+                    present_integration: "Alignment between personal values and actions",
+                    prospective_coherence: "Individual goal achievement and self-actualization",
+                    meta_constructor_capacity: "Personal learning and self-improvement"
+                }
             },
-            rules: {
-                external_structure_time: 0.87,
-                break_tasks_micro_segments: 0.93,
-                leverage_hyperfocus: 0.90,
-                communicate_differences: 0.85,
-                multiple_backup_plans: 0.82
+            collectivistic: {
+                name: "Collectivistic Framework",
+                description: "Prioritizes group harmony, collective welfare, and community-based decision-making.",
+                coordination_principles: [
+                    "Collective welfare over individual preferences",
+                    "Consensus-building and shared decision-making",
+                    "Contextual communication with attention to harmony",
+                    "Role-based responsibilities within the group",
+                    "Long-term relationship preservation"
+                ],
+                atcf_adaptations: {
+                    historical_continuity: "Community traditions and collective memory",
+                    present_integration: "Harmony between individual and group needs",
+                    prospective_coherence: "Community development and collective goals",
+                    meta_constructor_capacity: "Collective learning and group adaptation"
+                }
             },
-            ontological_commitments: {
-                nonlinear_time_perception: 0.89,
-                parallel_processing: 0.92,
-                interest_driven_attention: 0.88,
-                divergent_thinking: 0.90,
-                adaptive_cognitive_flexibility: 0.85
-            },
-            authenticity_criteria: {
-                neurodivergent_strengths: 0.93,
-                creative_problem_solving: 0.91,
-                honest_communication_differences: 0.87,
-                innovation_unique_perspectives: 0.89,
-                self_advocacy_accommodations: 0.84
+            hierarchical: {
+                name: "Hierarchical Framework",
+                description: "Operates through structured authority relationships and formal coordination protocols.",
+                coordination_principles: [
+                    "Clear authority structures and chain of command",
+                    "Formal procedures and standardized processes",
+                    "Respect for expertise and positional authority",
+                    "Structured communication channels",
+                    "Systematic coordination and resource allocation"
+                ],
+                atcf_adaptations: {
+                    historical_continuity: "Institutional memory and precedent",
+                    present_integration: "Role clarity and organizational alignment",
+                    prospective_coherence: "Strategic planning and institutional goals",
+                    meta_constructor_capacity: "Organizational learning and process improvement"
+                }
             }
-        },
-        atcf_components: {
-            historical_continuity: 0.74,
-            present_integration: 0.78,
-            prospective_coherence: 0.71,
-            meta_constructor_capacity: 0.89
-        },
-        coordination_capabilities: {
-            communication_style: 'structured_flexibility',
-            conflict_management: 'creative_problem_solving',
-            trust_building: 'competence_demonstration',
-            adaptation_style: 'innovative_approaches'
-        },
-        identity_kernel: 'Neurodivergent innovation, creative flexibility, adaptive structures'
-    },
-    fischer: {
-        id: 'fischer_003',
-        name: 'Dr. Emma Fischer',
-        subtitle: 'German Systematic Researcher',
-        cultural_background: 'German individualistic',
-        profession: 'Research Scientist',
-        age_group: 'mid_career',
-        neurodiversity: 'neurotypical',
-        broa_data: {
-            beliefs: {
-                systematic_methodology_reliability: 0.94,
-                individual_responsibility_excellence: 0.91,
-                thorough_preparation_prevents_failures: 0.93,
-                direct_communication_efficiency: 0.89,
-                precise_definitions_understanding: 0.92
-            },
-            rules: {
-                complete_preparation: 0.95,
-                systematic_documentation: 0.93,
-                address_problems_directly: 0.88,
-                individual_accountability: 0.90,
-                follow_protocols: 0.87
-            },
-            ontological_commitments: {
-                mechanistic_causation: 0.91,
-                individual_agency_primacy: 0.89,
-                systematic_organization: 0.94,
-                precision_categorization: 0.92,
-                efficiency_core_value: 0.88
-            },
-            authenticity_criteria: {
-                intellectual_honesty: 0.95,
-                systematic_approach: 0.93,
-                direct_communication: 0.89,
-                individual_responsibility: 0.91,
-                methodological_rigor: 0.94
+        };
+
+        const coordinationMatrix = {
+            'tanaka-maya': 0.73,
+            'tanaka-fischer': 0.69,
+            'tanaka-clara': 0.87,
+            'tanaka-alex': 0.71,
+            'tanaka-roberto': 0.79,
+            'maya-fischer': 0.68,
+            'maya-clara': 0.76,
+            'maya-alex': 0.84,
+            'maya-roberto': 0.77,
+            'fischer-clara': 0.65,
+            'fischer-alex': 0.72,
+            'fischer-roberto': 0.81,
+            'clara-alex': 0.78,
+            'clara-roberto': 0.74,
+            'alex-roberto': 0.80
+        };
+
+        // Global variables
+        let selectedAgents = [];
+
+        // Initialize the application
+        console.log('Initializing FAIM-QIRF Framework Application...');
+
+        // ATCF Calculator Functions
+        function openATCFCalculator() {
+            console.log('Opening ATCF Calculator...');
+            document.getElementById('atcfModal').style.display = 'block';
+            updateATCF();
+        }
+
+        function closeATCFCalculator() {
+            document.getElementById('atcfModal').style.display = 'none';
+        }
+
+        function updateATCF() {
+            try {
+                const historical = parseFloat(document.getElementById('historical').value);
+                const present = parseFloat(document.getElementById('present').value);
+                const prospective = parseFloat(document.getElementById('prospective').value);
+                const metaconstructor = parseFloat(document.getElementById('metaconstructor').value);
+
+                // Update value displays
+                document.getElementById('historicalValue').textContent = historical.toFixed(2);
+                document.getElementById('presentValue').textContent = present.toFixed(2);
+                document.getElementById('prospectiveValue').textContent = prospective.toFixed(2);
+                document.getElementById('metaconstructorValue').textContent = metaconstructor.toFixed(2);
+
+                // Calculate ATCF (equal weights for demo)
+                const atcfScore = (historical + present + prospective + metaconstructor) / 4;
+                document.getElementById('atcfScore').textContent = atcfScore.toFixed(2);
+
+                // Update interpretation
+                let interpretation = '';
+                if (atcfScore >= 0.85) {
+                    interpretation = 'Excellent temporal coherence. The agent demonstrates exceptional integration across all time scales with strong adaptive capacity.';
+                } else if (atcfScore >= 0.7) {
+                    interpretation = 'Good temporal coherence. The agent shows solid integration with strong coordination potential.';
+                } else if (atcfScore >= 0.5) {
+                    interpretation = 'Moderate temporal coherence. The agent shows balanced integration across time scales with opportunities for enhancement.';
+                } else {
+                    interpretation = 'Lower temporal coherence. The agent may benefit from focused work on temporal integration and identity coherence.';
+                }
+
+                document.getElementById('atcfInterpretation').textContent = interpretation;
+            } catch (error) {
+                console.error('Error in updateATCF:', error);
             }
-        },
-        atcf_components: {
-            historical_continuity: 0.91,
-            present_integration: 0.94,
-            prospective_coherence: 0.88,
-            meta_constructor_capacity: 0.79
-        },
-        coordination_capabilities: {
-            communication_style: 'systematic_protocols',
-            conflict_management: 'methodical_resolution',
-            trust_building: 'reliability_demonstration',
-            adaptation_style: 'evidence_based_updating'
-        },
-        identity_kernel: 'Germanic systematic thinking, methodological precision, efficiency-oriented'
-    },
-    clara: {
-        id: 'clara_004',
-        name: 'Grandmother Clara Whitehorse',
-        subtitle: 'Indigenous Community Elder',
-        cultural_background: 'Indigenous community-oriented',
-        profession: 'Community Elder/Wisdom Keeper',
-        age_group: 'elder',
-        neurodiversity: 'neurotypical',
-        broa_data: {
-            beliefs: {
-                seven_generation_thinking: 0.96,
-                all_beings_interconnected: 0.94,
-                wisdom_collective_experience: 0.92,
-                land_people_inseparable: 0.95,
-                circular_time_relationships: 0.89
-            },
-            rules: {
-                consider_seven_generations: 0.95,
-                consensus_circle_processes: 0.93,
+        }
+
+        function loadSampleAgent(agentId) {
+            try {
+                console.log('Loading sample agent:', agentId);
+                const agent = sampleAgentData[agentId];
+                if (agent && agent.atcf_components) {
+                    document.getElementById('historical').value = agent.atcf_components.historical_continuity;
+                    document.getElementById('present').value = agent.atcf_components.present_integration;
+                    document.getElementById('prospective').value = agent.atcf_components.prospective_coherence;
+                    document.getElementById('metaconstructor').value = agent.atcf_components.meta_constructor_capacity;
+                    updateATCF();
+                } else {
+                    console.error('Agent not found:', agentId);
+                }
+            } catch (error) {
+                console.error('Error loading sample agent:', error);
+            }
+        }
+
+        // Coordination Demo Functions
+        function openCoordinationDemo() {
+            console.log('Opening Coordination Demo...');
+            document.getElementById('coordinationModal').style.display = 'block';
+            selectedAgents = []; // Reset selection
+            populateAgentGrid();
+        }
+
+        function closeCoordinationDemo() {
+            document.getElementById('coordinationModal').style.display = 'none';
+        }
+
+        function populateAgentGrid() {
+            try {
+                const agentGrid = document.getElementById('agentGrid');
+                agentGrid.innerHTML = '';
+                
+                Object.entries(sampleAgentData).forEach(([id, agent]) => {
+                    const agentCard = document.createElement('div');
+                    agentCard.className = 'agent-card';
+                    agentCard.onclick = () => selectAgent(id, agentCard);
+                    
+                    agentCard.innerHTML = `
+                        <h4>${agent.name}</h4>
+                        <p><strong>${agent.subtitle}</strong></p>
+                        <p><strong>Background:</strong> ${agent.cultural_background}</p>
+                        <p><strong>Profession:</strong> ${agent.profession}</p>
+                        <p><strong>Communication:</strong> ${agent.coordination_capabilities.communication_style.replace(/_/g, ' ')}</p>
+                        <p><strong>ATCF Score:</strong> ${calculateATCFScore(agent).toFixed(2)}</p>
+                        <div class="identity-kernel">
+                            <strong>Identity Kernel:</strong> ${agent.identity_kernel}
+                        </div>
+                    `;
+                    
+                    agentGrid.appendChild(agentCard);
+                });
+                console.log('Agent grid populated with', Object.keys(sampleAgentData).length, 'agents');
+            } catch (error) {
+                console.error('Error populating agent grid:', error);
+            }
+        }
+
+        function selectAgent(agentId, cardElement) {
+            try {
+                // Toggle selection
+                if (cardElement.classList.contains('selected')) {
+                    cardElement.classList.remove('selected');
+                    const index = selectedAgents.indexOf(agentId);
+                    if (index > -1) {
+                        selectedAgents.splice(index, 1);
+                    }
+                } else {
+                    cardElement.classList.add('selected');
+                    selectedAgents.push(agentId);
+                }
+
+                // Limit to 2 agents
+                if (selectedAgents.length > 2) {
+                    const firstSelected = document.querySelector('.agent-card.selected');
+                    if (firstSelected) {
+                        firstSelected.classList.remove('selected');
+                    }
+                    selectedAgents.shift();
+                }
+
+                console.log('Selected agents:', selectedAgents);
+
+                // Show coordination analysis if 2 agents selected
+                if (selectedAgents.length === 2) {
+                    analyzeCoordination();
+                } else {
+                    document.getElementById('coordinationResults').style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Error selecting agent:', error);
+            }
+        }
+
+        function analyzeCoordination() {
+            try {
+                document.getElementById('coordinationLoading').style.display = 'block';
+                document.getElementById('coordinationResults').style.display = 'none';
+                
+                setTimeout(() => {
+                    const agent1 = sampleAgentData[selectedAgents[0]];
+                    const agent2 = sampleAgentData[selectedAgents[1]];
+                    
+                    const coordinationKey = getCoordinationKey(selectedAgents[0], selectedAgents[1]);
+                    const precomputedScore = coordinationMatrix[coordinationKey] || calculateCoordinationPotential(agent1, agent2);
+                    
+                    document.getElementById('coordinationLoading').style.display = 'none';
+                    document.getElementById('coordinationResults').style.display = 'block';
+                    
+                    document.getElementById('coordinationScore').innerHTML = `
+                        <div class="result-score">${precomputedScore.toFixed(2)}</div>
+                        <p><strong>Coordination Potential Score</strong></p>
+                    `;
+                    
+                    let explanation = '';
+                    if (precomputedScore >= 0.8) {
+                        explanation = 'High coordination potential. These agents have complementary capabilities and compatible coordination styles despite their differences.';
+                    } else if (precomputedScore >= 0.7) {
+                        explanation = 'Good coordination potential. These agents can coordinate effectively with some adaptation and mutual understanding.';
+                    } else if (precomputedScore >= 0.6) {
+                        explanation = 'Moderate coordination potential. With proper facilitation, these agents can achieve functional coordination.';
+                    } else {
+                        explanation = 'Lower coordination potential. These agents may need significant support structures for effective coordination.';
+                    }
+                    
+                    explanation += `<br><br><strong>Agent Comparison:</strong><br>
+                        • <strong>${agent1.name}:</strong> ${agent1.coordination_capabilities.communication_style.replace(/_/g, ' ')}<br>
+                        • <strong>${agent2.name}:</strong> ${agent2.coordination_capabilities.communication_style.replace(/_/g, ' ')}<br><br>
+                        <strong>Key Factors:</strong><br>
+                        • Cultural framework compatibility: ${assessCulturalCompatibility(agent1, agent2)}<br>
+                        • Communication style alignment: ${assessCommunicationAlignment(agent1, agent2)}<br>
+                        • ATCF complementarity: ${assessATCFComplementarity(agent1, agent2)}<br>
+                        • Neurodiversity considerations: ${assessNeurodiversityFactor(agent1, agent2)}`;
+                    
+                    document.getElementById('coordinationExplanation').innerHTML = explanation;
+                }, 1500);
+            } catch (error) {
+                console.error('Error analyzing coordination:', error);
+            }
+        }
+
+        function getCoordinationKey(agent1Id, agent2Id) {
+            const sorted = [agent1Id, agent2Id].sort();
+            return `${sorted[0]}-${sorted[1]}`;
+        }
+
+        function calculateCoordinationPotential(agent1, agent2) {
+            const atcf1 = calculateATCFScore(agent1);
+            const atcf2 = calculateATCFScore(agent2);
+            return (atcf1 + atcf2) / 2; // Simplified calculation
+        }
+
+        function calculateATCFScore(agent) {
+            const components = agent.atcf_components;
+            return (components.historical_continuity + components.present_integration + 
+                    components.prospective_coherence + components.meta_constructor_capacity) / 4;
+        }
+
+        function assessCulturalCompatibility(agent1, agent2) {
+            if (agent1.cultural_background === agent2.cultural_background) {
+                return 'High - shared cultural framework enables natural coordination';
+            } else if (agent1.cultural_background.includes('collectiv') && agent2.cultural_background.includes('collectiv')) {
+                return 'High - both collectivistic approaches align well';
+            } else if (agent1.cultural_background.includes('individual') && agent2.cultural_background.includes('individual')) {
+                return 'Good - both individualistic approaches can coordinate through clear agreements';
+            } else {
+                return 'Moderate - different frameworks require bridge-building and mutual adaptation';
+            }
+        }
+
+        function assessCommunicationAlignment(agent1, agent2) {
+            const style1 = agent1.coordination_capabilities.communication_style;
+            const style2 = agent2.coordination_capabilities.communication_style;
+            
+            if (style1 === style2) {
+                return 'High - identical communication styles enable smooth interaction';
+            } else if ((style1.includes('consensus') && style2.includes('consensus')) || 
+                       (style1.includes('systematic') && style2.includes('systematic'))) {
+                return 'Good - complementary structured approaches';
+            } else {
+                return 'Moderate - different styles requiring adaptation and translation';
+            }
+        }
+
+        function assessATCFComplementarity(agent1, agent2) {
+            const score1 = calculateATCFScore(agent1);
+            const score2 = calculateATCFScore(agent2);
+            const avg = (score1 + score2) / 2;
+            
+            if (avg >= 0.85) {
+                return 'Excellent - both agents show exceptional temporal coherence';
+            } else if (avg >= 0.75) {
+                return 'Good - both agents demonstrate strong coherence for coordination';
+            } else if (avg >= 0.65) {
+                return 'Moderate - adequate coherence with room for development';
+            } else {
+                return 'Lower - may need coherence development support';
+            }
+        }
+
+        function assessNeurodiversityFactor(agent1, agent2) {
+            const neuro1 = agent1.neurodiversity;
+            const neuro2 = agent2.neurodiversity;
+            
+            if (neuro1 === neuro2) {
+                return neuro1 === 'neurotypical' ? 
+                    'Standard - both neurotypical' : 
+                    'High compatibility - shared neurodivergent perspectives';
+            } else {
+                return 'Diverse perspectives - neurotypical/neurodivergent combination offers complementary strengths';
+            }
+        }
+
+        // Cultural Explorer Functions
+        function openCulturalExplorer() {
+            console.log('Opening Cultural Explorer...');
+            document.getElementById('culturalModal').style.display = 'block';
+        }
+
+        function closeCulturalExplorer() {
+            document.getElementById('culturalModal').style.display = 'none';
+        }
+
+        function loadCulturalFramework(frameworkType) {
+            try {
+                const framework = culturalFrameworks[frameworkType];
+                
+                document.getElementById('culturalTitle').textContent = framework.name;
+                document.getElementById('culturalDescription').innerHTML = `<p>${framework.description}</p>`;
+                
+                const principlesList = framework.coordination_principles.map(principle => 
+                    `<li>${principle}</li>`
+                ).join('');
+                
+                const adaptationsList = Object.entries(framework.atcf_adaptations).map(([component, adaptation]) =>
+                    `<li><strong>${component.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}:</strong> ${adaptation}</li>`
+                ).join('');
+                
+                document.getElementById('culturalPrinciples').innerHTML = `
+                    <h4>Coordination Principles:</h4>
+                    <ul>${principlesList}</ul>
+                    <h4>ATCF Adaptations:</h4>
+                    <ul>${adaptationsList}</ul>
+                `;
+                
+                document.getElementById('culturalResults').style.display = 'block';
+            } catch (error) {
+                console.error('Error loading cultural framework:', error);
+            }
+        }
+
+        // Modal click handler
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        };
+
+        console.log('FAIM-QIRF Framework Application loaded successfully!');
+        console.log('Available agents:', Object.keys(sampleAgentData));
+    </script>
+</body>
+</html>
