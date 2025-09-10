@@ -1484,6 +1484,19 @@
             alert('Agent configuration saved!');
         }
 
+        function toggleInfoPanel() {
+            const panel = document.getElementById('infoPanel');
+            const btn = document.getElementById('infoToggleBtn');
+            
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+                btn.textContent = 'Hide Definitions';
+            } else {
+                panel.style.display = 'none';
+                btn.textContent = 'Show Definitions';
+            }
+        }
+
         // Modal click handler
         window.onclick = function(event) {
             const modals = document.querySelectorAll('.modal');
