@@ -188,7 +188,7 @@
             padding: 30px;
             border-radius: 15px;
             width: 90%;
-            max-width: 800px;
+            max-width: 1000px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             position: relative;
             max-height: 80vh;
@@ -370,6 +370,36 @@
             margin-top: 15px;
         }
 
+        /* Agent Builder Specific Styles */
+        .coordination-prediction {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            margin: 8px 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .coordination-prediction h5 {
+            margin: 0 0 5px 0;
+            color: #1e3c72;
+        }
+
+        .coordination-prediction p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        .two-column {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+
         @media (max-width: 768px) {
             .nav-links {
                 flex-direction: column;
@@ -396,6 +426,10 @@
             
             .content {
                 padding: 20px;
+            }
+
+            .two-column {
+                flex-direction: column;
             }
         }
     </style>
@@ -469,6 +503,18 @@
                             <li>Adaptation guidelines</li>
                         </ul>
                         <button class="btn" onclick="openCulturalExplorer()">Explore Frameworks</button>
+                    </div>
+
+                    <div class="demo-card">
+                        <h3>Build Your Own Agent</h3>
+                        <p>Create a custom agent with your own BROA+ configuration and see how it coordinates with existing agents.</p>
+                        <ul class="feature-list">
+                            <li>Custom belief, rule, and value settings</li>
+                            <li>Real-time ATCF calculation</li>
+                            <li>Coordination prediction with existing agents</li>
+                            <li>Export agent configurations</li>
+                        </ul>
+                        <button class="btn" onclick="openAgentBuilder()">Build Agent</button>
                     </div>
                 </div>
             </div>
@@ -606,6 +652,106 @@
                     <h3 id="culturalTitle"></h3>
                     <div id="culturalDescription"></div>
                     <div id="culturalPrinciples"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agent Builder Modal -->
+    <div id="agentBuilderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAgentBuilder()">&times;</span>
+            <h2>Build Your Own Agent</h2>
+            
+            <div class="two-column">
+                <!-- Left Column - Agent Configuration -->
+                <div class="column">
+                    <h3>Agent Configuration</h3>
+                    
+                    <div class="slider-container">
+                        <label for="agentName">Agent Name:</label>
+                        <input type="text" id="agentName" placeholder="Enter agent name" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd;">
+                    </div>
+
+                    <div class="slider-container">
+                        <label for="agentBackground">Cultural Background:</label>
+                        <select id="agentBackground" style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ddd;" onchange="updateCustomAgent()">
+                            <option value="individualistic">Individualistic</option>
+                            <option value="collectivistic">Collectivistic</option>
+                            <option value="hierarchical">Hierarchical</option>
+                            <option value="egalitarian">Egalitarian</option>
+                            <option value="mixed">Mixed/Hybrid</option>
+                        </select>
+                    </div>
+
+                    <h4>Core Beliefs (How strongly does this agent believe in...)</h4>
+                    
+                    <div class="slider-container">
+                        <label for="beliefAutonomy">Personal Autonomy: <span id="beliefAutonomyValue" class="value-display">0.5</span></label>
+                        <input type="range" id="beliefAutonomy" class="slider" min="0" max="1" step="0.01" value="0.5" oninput="updateCustomAgent()">
+                    </div>
+
+                    <div class="slider-container">
+                        <label for="beliefCollective">Collective Responsibility: <span id="beliefCollectiveValue" class="value-display">0.5</span></label>
+                        <input type="range" id="beliefCollective" class="slider" min="0" max="1" step="0.01" value="0.5" oninput="updateCustomAgent()">
+                    </div>
+
+                    <div class="slider-container">
+                        <label for="beliefEvidence">Evidence-Based Reasoning: <span id="beliefEvidenceValue" class="value-display">0.5</span></label>
+                        <input type="range" id="beliefEvidence" class="slider" min="0" max="1" step="0.01" value="0.5" oninput="updateCustomAgent()">
+                    </div>
+
+                    <div class="slider-container">
+                        <label for="beliefTradition">Traditional Authority: <span id="beliefTraditionValue" class="value-display">0.5</span></label>
+                        <input type="range" id="beliefTradition" class="slider" min="0" max="1" step="0.01" value="0.5" oninput="updateCustomAgent()">
+                    </div>
+
+                    <h4>Decision-Making Rules</h4>
+                    
+                    <div class="slider-container">
+                        <label for="ruleConsensus">Consensus Building: <span id="ruleConsensusValue" class="value-display">0.5</span></label>
+                        <input type="range" id="ruleConsensus" class="slider" min="0" max="1" step="0.01" value="0.5" oninput="updateCustomAgent()">
+                    </div>
+
+                    <div class="slider-container">
+                        <label for="ruleSpeed">Quick Decision Making: <span id="ruleSpeedValue" class="value-display">0.5</span></label>
+                        <input type="range" id="ruleSpeed" class="slider" min="0" max="1" step="0.01" value="0.5" oninput="updateCustomAgent()">
+                    </div>
+
+                    <div class="slider-container">
+                        <label for="ruleFlexibility">Adaptability/Flexibility: <span id="ruleFlexibilityValue" class="value-display">0.5</span></label>
+                        <input type="range" id="ruleFlexibility" class="slider" min="0" max="1" step="0.01" value="0.5" oninput="updateCustomAgent()">
+                    </div>
+                </div>
+
+                <!-- Right Column - Results -->
+                <div class="column">
+                    <h3>Agent Profile</h3>
+                    
+                    <div class="result-display" id="customAgentProfile">
+                        <h4 id="customAgentName">Custom Agent</h4>
+                        <p><strong>Cultural Background:</strong> <span id="customAgentBg">Individualistic</span></p>
+                        <p><strong>Communication Style:</strong> <span id="customCommStyle">Balanced</span></p>
+                        <p><strong>ATCF Score:</strong> <span id="customATCF">0.50</span></p>
+                        <div id="customIdentityKernel" style="margin-top: 10px; padding: 10px; background: #f0f8ff; border-radius: 4px;">
+                            <strong>Generated Identity Kernel:</strong> <span id="customKernelText">Balanced individual with moderate coordination preferences</span>
+                        </div>
+                    </div>
+
+                    <h4>Coordination Predictions</h4>
+                    <div id="coordinationPredictions">
+                        <p>Build your agent to see coordination potential with existing agents.</p>
+                    </div>
+
+                    <div style="margin-top: 20px;">
+                        <button class="btn" onclick="saveCustomAgent()">Save Agent</button>
+                        <button class="btn btn-secondary" onclick="testCoordinationWithAll()">Test Coordination</button>
+                    </div>
+                    
+                    <div style="margin-top: 15px;">
+                        <button class="btn btn-small" onclick="loadPresetAgent('entrepreneur')">Load Entrepreneur</button>
+                        <button class="btn btn-small" onclick="loadPresetAgent('therapist')">Load Therapist</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1125,6 +1271,217 @@
             } catch (error) {
                 console.error('Error loading cultural framework:', error);
             }
+        }
+
+        // Agent Builder Functions
+        function openAgentBuilder() {
+            console.log('Opening Agent Builder...');
+            document.getElementById('agentBuilderModal').style.display = 'block';
+            updateCustomAgent();
+        }
+
+        function closeAgentBuilder() {
+            document.getElementById('agentBuilderModal').style.display = 'none';
+        }
+
+        function updateCustomAgent() {
+            try {
+                // Get all values
+                const name = document.getElementById('agentName').value || 'Custom Agent';
+                const background = document.getElementById('agentBackground').value;
+                
+                const beliefAutonomy = parseFloat(document.getElementById('beliefAutonomy').value);
+                const beliefCollective = parseFloat(document.getElementById('beliefCollective').value);
+                const beliefEvidence = parseFloat(document.getElementById('beliefEvidence').value);
+                const beliefTradition = parseFloat(document.getElementById('beliefTradition').value);
+                
+                const ruleConsensus = parseFloat(document.getElementById('ruleConsensus').value);
+                const ruleSpeed = parseFloat(document.getElementById('ruleSpeed').value);
+                const ruleFlexibility = parseFloat(document.getElementById('ruleFlexibility').value);
+
+                // Update value displays
+                document.getElementById('beliefAutonomyValue').textContent = beliefAutonomy.toFixed(2);
+                document.getElementById('beliefCollectiveValue').textContent = beliefCollective.toFixed(2);
+                document.getElementById('beliefEvidenceValue').textContent = beliefEvidence.toFixed(2);
+                document.getElementById('beliefTraditionValue').textContent = beliefTradition.toFixed(2);
+                document.getElementById('ruleConsensusValue').textContent = ruleConsensus.toFixed(2);
+                document.getElementById('ruleSpeedValue').textContent = ruleSpeed.toFixed(2);
+                document.getElementById('ruleFlexibilityValue').textContent = ruleFlexibility.toFixed(2);
+
+                // Calculate derived values
+                const customAgent = generateCustomAgent(name, background, {
+                    beliefAutonomy, beliefCollective, beliefEvidence, beliefTradition,
+                    ruleConsensus, ruleSpeed, ruleFlexibility
+                });
+
+                // Update display
+                document.getElementById('customAgentName').textContent = name;
+                document.getElementById('customAgentBg').textContent = background;
+                document.getElementById('customCommStyle').textContent = customAgent.communication_style;
+                document.getElementById('customATCF').textContent = customAgent.atcf_score.toFixed(2);
+                document.getElementById('customKernelText').textContent = customAgent.identity_kernel;
+
+                // Store custom agent globally for coordination testing
+                window.customAgent = customAgent;
+
+            } catch (error) {
+                console.error('Error updating custom agent:', error);
+            }
+        }
+
+        function generateCustomAgent(name, background, values) {
+            // Calculate ATCF components based on input values
+            const historical_continuity = (values.beliefTradition + values.beliefEvidence) / 2;
+            const present_integration = (values.beliefAutonomy + values.beliefCollective + values.beliefEvidence) / 3;
+            const prospective_coherence = (values.ruleFlexibility + values.beliefEvidence) / 2;
+            const meta_constructor_capacity = (values.ruleFlexibility + values.ruleSpeed + (1 - values.beliefTradition)) / 3;
+
+            const atcf_score = (historical_continuity + present_integration + prospective_coherence + meta_constructor_capacity) / 4;
+
+            // Determine communication style
+            let communication_style = 'balanced';
+            if (values.ruleConsensus > 0.7) {
+                communication_style = 'consensus_building';
+            } else if (values.ruleSpeed > 0.7) {
+                communication_style = 'direct_decisive';
+            } else if (values.beliefAutonomy > 0.7) {
+                communication_style = 'individual_focused';
+            } else if (values.beliefCollective > 0.7) {
+                communication_style = 'group_oriented';
+            }
+
+            // Generate identity kernel
+            let identity_kernel = '';
+            if (values.beliefAutonomy > 0.7) {
+                identity_kernel += 'Autonomous ';
+            }
+            if (values.beliefCollective > 0.7) {
+                identity_kernel += 'Community-oriented ';
+            }
+            if (values.beliefEvidence > 0.7) {
+                identity_kernel += 'Evidence-based ';
+            }
+            if (values.beliefTradition > 0.7) {
+                identity_kernel += 'Traditional ';
+            }
+            if (values.ruleFlexibility > 0.7) {
+                identity_kernel += 'Adaptive ';
+            }
+            
+            identity_kernel += background + ' agent with ';
+            
+            if (values.ruleConsensus > 0.6) {
+                identity_kernel += 'collaborative decision-making preferences';
+            } else if (values.ruleSpeed > 0.6) {
+                identity_kernel += 'efficient action-oriented approach';
+            } else {
+                identity_kernel += 'balanced coordination style';
+            }
+
+            return {
+                id: 'custom_agent',
+                name: name,
+                cultural_background: background,
+                atcf_components: {
+                    historical_continuity,
+                    present_integration, 
+                    prospective_coherence,
+                    meta_constructor_capacity
+                },
+                atcf_score,
+                communication_style,
+                identity_kernel,
+                coordination_capabilities: {
+                    communication_style,
+                    conflict_management: values.ruleConsensus > 0.6 ? 'collaborative' : 'direct',
+                    trust_building: values.beliefEvidence > 0.6 ? 'competence_demonstration' : 'relationship_cultivation',
+                    adaptation_style: values.ruleFlexibility > 0.6 ? 'flexible_adaptation' : 'structured_consistency'
+                },
+                custom_values: values
+            };
+        }
+
+        function testCoordinationWithAll() {
+            if (!window.customAgent) {
+                updateCustomAgent();
+            }
+            
+            const predictions = [];
+            Object.entries(sampleAgentData).forEach(([id, agent]) => {
+                const score = calculateCoordinationPotential(window.customAgent, agent);
+                predictions.push({
+                    agent: agent.name,
+                    score: score,
+                    explanation: generateCoordinationExplanation(window.customAgent, agent, score)
+                });
+            });
+
+            // Sort by score
+            predictions.sort((a, b) => b.score - a.score);
+
+            // Display results
+            const html = predictions.map(p => `
+                <div class="coordination-prediction">
+                    <h5>${p.agent}: ${p.score.toFixed(2)}</h5>
+                    <p>${p.explanation}</p>
+                </div>
+            `).join('');
+
+            document.getElementById('coordinationPredictions').innerHTML = html;
+        }
+
+        function generateCoordinationExplanation(customAgent, otherAgent, score) {
+            if (score >= 0.8) {
+                return `Highly compatible - similar ${customAgent.communication_style} and ${otherAgent.coordination_capabilities.communication_style} approaches`;
+            } else if (score >= 0.6) {
+                return `Good potential - complementary ${customAgent.cultural_background} and ${otherAgent.cultural_background} frameworks`;
+            } else {
+                return `Moderate potential - different approaches may require structured coordination`;
+            }
+        }
+
+        function loadPresetAgent(type) {
+            if (type === 'entrepreneur') {
+                document.getElementById('agentName').value = 'Tech Entrepreneur';
+                document.getElementById('agentBackground').value = 'individualistic';
+                document.getElementById('beliefAutonomy').value = 0.9;
+                document.getElementById('beliefCollective').value = 0.3;
+                document.getElementById('beliefEvidence').value = 0.8;
+                document.getElementById('beliefTradition').value = 0.2;
+                document.getElementById('ruleConsensus').value = 0.4;
+                document.getElementById('ruleSpeed').value = 0.9;
+                document.getElementById('ruleFlexibility').value = 0.8;
+            } else if (type === 'therapist') {
+                document.getElementById('agentName').value = 'Clinical Therapist';
+                document.getElementById('agentBackground').value = 'collectivistic';
+                document.getElementById('beliefAutonomy').value = 0.6;
+                document.getElementById('beliefCollective').value = 0.8;
+                document.getElementById('beliefEvidence').value = 0.9;
+                document.getElementById('beliefTradition').value = 0.5;
+                document.getElementById('ruleConsensus').value = 0.8;
+                document.getElementById('ruleSpeed').value = 0.3;
+                document.getElementById('ruleFlexibility').value = 0.7;
+            }
+            updateCustomAgent();
+        }
+
+        function saveCustomAgent() {
+            if (!window.customAgent) {
+                updateCustomAgent();
+            }
+            
+            const agentData = JSON.stringify(window.customAgent, null, 2);
+            const blob = new Blob([agentData], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${window.customAgent.name.replace(/\s+/g, '_')}_agent.json`;
+            a.click();
+            
+            URL.revokeObjectURL(url);
+            
+            alert('Agent configuration saved!');
         }
 
         // Modal click handler
