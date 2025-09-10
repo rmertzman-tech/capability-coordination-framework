@@ -666,7 +666,22 @@
             <div class="two-column">
                 <!-- Left Column - Agent Configuration -->
                 <div class="column">
-                    <h3>Agent Configuration</h3>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h3>Agent Configuration</h3>
+    <button class="btn btn-small" onclick="toggleInfoPanel()" id="infoToggleBtn">Show Definitions</button>
+</div> <!-- Information Panel (Hidden by default) -->
+<div id="infoPanel" style="display: none; background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #667eea;">
+    <h4 style="margin-top: 0;">Framework Definitions</h4>
+    <p><strong>BROA+ Components:</strong> Beliefs (what the agent considers true), Rules (decision-making procedures), Ontology (fundamental categories for understanding reality), and Authenticity+ (identity preservation criteria).</p>
+    
+    <p><strong>ATCF Score:</strong> Adaptive Temporal Coherence Function - measures how well an agent maintains coherent identity while adapting over time across past, present, and future.</p>
+    
+    <p><strong>Identity Kernel:</strong> The core aspects of an agent's identity that remain stable even as beliefs and behaviors adapt to new situations.</p>
+    
+    <p><strong>Coordination Potential:</strong> How effectively two agents can work together despite having different beliefs, values, and cognitive architectures through functional equivalence.</p>
+    
+    <button class="btn btn-small" onclick="toggleInfoPanel()" style="margin-top: 10px;">Hide Definitions</button>
+</div>
                     
                     <div class="slider-container">
                         <label for="agentName">Agent Name:</label>
@@ -1509,6 +1524,18 @@
 
         console.log('FAIM-QIRF Framework Application loaded successfully!');
         console.log('Available agents:', Object.keys(sampleAgentData));
+        function toggleInfoPanel() {
+    const panel = document.getElementById('infoPanel');
+    const btn = document.getElementById('infoToggleBtn');
+    
+    if (panel.style.display === 'none') {
+        panel.style.display = 'block';
+        btn.textContent = 'Hide Definitions';
+    } else {
+        panel.style.display = 'none';
+        btn.textContent = 'Show Definitions';
+    }
+}
     </script>
 </body>
 </html>
